@@ -2,10 +2,8 @@
    Motor driver function definitions - by James Nugen
    *************************************************************/
 
-#ifdef L298_MOTOR_DRIVER
-  #define REAR_MOTOR_BACKWARD 8
-  #define REAR_MOTOR_FORWARD  9
-  #define REAR_MOTOR_ENABLE 7
+#ifdef ESC_DRIVER
+    #define ESC_PIN 5
 #endif
 
 void initMotorController();

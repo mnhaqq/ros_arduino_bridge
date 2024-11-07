@@ -45,13 +45,14 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************/
 
+
 #define USE_BASE      // Enable the base controller code
 //#undef USE_BASE     // Disable the base controller code
 
 /* Define the motor controller and encoder library you are using */
 #ifdef USE_BASE
-   /* L298 Motor driver*/
-   #define L298_MOTOR_DRIVER
+  /* ESC Driver */
+  #define ESC_DRIVER
 #endif
 
 #define USE_SERVOS  // Enable use of PWM servos as defined in servos.h
@@ -60,8 +61,6 @@
 /* Serial port baud rate */
 #define BAUDRATE     9600
 
-/* Maximum PWM signal */
-#define MAX_PWM        255
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
@@ -161,14 +160,14 @@ int runCommand() {
 #endif
     
 #ifdef USE_BASE
-  case MOTOR_SPEEDS:
-    /* Reset the auto stop timer */
-    lastMotorCommand = millis();
-    if (arg1 == 0) {
-      setMotorSpeeds(0);
-    }
-    Serial.println("OK"); 
-    break;
+  // case MOTOR_SPEEDS:
+  //   /* Reset the auto stop timer */
+  //   lastMotorCommand = millis();
+  //   if (arg1 == 0) {
+  //     setMotorSpeeds(0);
+  //   }
+  //   Serial.println("OK"); 
+  //   break;
   case MOTOR_RAW_PWM:
     /* Reset the auto stop timer */
     lastMotorCommand = millis();

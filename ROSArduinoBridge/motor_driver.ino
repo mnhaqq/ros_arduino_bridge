@@ -9,32 +9,15 @@
 
 #ifdef USE_BASE
    
-#ifdef L298_MOTOR_DRIVER
+#ifdef ESC_DRIVER
+  Servo esc;  // create servo object to control the ESC
   void initMotorController() {
-    digitalWrite(REAR_MOTOR_ENABLE, HIGH);
+    esc.attach(ESC_PIN);  // attaches the servo on pin 5 to the servo object
+    esc.writeMicroseconds(1500);  // set initial speed to 1500 microseconds
   }
   
   void setMotorSpeed(int spd) {
-    unsigned char reverse = 0;
-  
-    if (spd < 0)
-    {
-      spd = -spd;
-      reverse = 1;
-    }
-    if (spd > 255)
-      spd = 255;
-    
-    if (reverse == 0) 
-      { 
-        analogWrite(REAR_MOTOR_FORWARD, spd); 
-        analogWrite(REAR_MOTOR_BACKWARD, 0); 
-      }
-    else if (reverse == 1) 
-    { 
-      analogWrite(REAR_MOTOR_BACKWARD, spd); 
-      analogWrite(REAR_MOTOR_FORWARD, 0); 
-    }
+    esc.writeMicroseconds(1500 + spd);  // set speed to 1500 + spd microseconds
   }
   
   void setMotorSpeeds(int motorSpeed) {
